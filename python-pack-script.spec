@@ -1,11 +1,11 @@
-%{!?_version: %define _version 0.0.1 }
+%{!?_version: %define _version 0.0.3 }
 %global srcname python-pack-script
 
 
 Name:           %{srcname}
 Version:        %{_version} 
 Release:        1%{?dist}
-Summary:        Test RPM package builder for python package
+Summary:        Demo RPM builder for python packages
 BuildArch:      noarch
 
 License:        GPL
@@ -16,9 +16,9 @@ BuildRequires:   python3-devel python3-setuptools
 Requires:        python3
 
 %description
-Test RPM package builder for python package
+Demo RPM builder for python packages
 
 
 %changelog
-* 0.0.1
+* 0.0.3
 - First version being packaged

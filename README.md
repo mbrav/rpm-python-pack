@@ -1,6 +1,6 @@
 # rpm-python-pack
 
-Test RPM package builder for python package
+Demo RPM builder for python packages
 
 Clone repo
 
@@ -39,8 +39,8 @@ cd rpm-python-pack/
     <p>
 
     ```bash
-    pip3 install poetry2setup --user && \
-    poetry2setup > setup.py
+    sudo apt install rpm && \
+    python setup.py bdist --formats=rpm
     ```
 
     </p>
@@ -64,13 +64,13 @@ cd rpm-python-pack/
     ```
     Installed Packages
       Name         : python-pack-script
-      Version      : 0.0.2
+      Version      : 0.0.3
       Release      : 1
       Architecture : noarch
       Size         : 1.5 k
-      Source       : python-pack-script-0.0.2-1.src.rpm
+      Source       : python-pack-script-0.0.3-1.src.rpm
       Repository   : @System
-      Summary      : Test RPM package builder for python package
+      Summary      : Demo RPM builder for python packages
       URL          : http://github/mbrav/python-pack-script/
       License      : GNU
       Description  : UNKNOWN

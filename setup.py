@@ -9,8 +9,8 @@ package_data = \
 
 setup_kwargs = {
     'name': 'python-pack-script',
-    'version': '0.0.1',
-    'description': 'Test RPM package builder for python package',
+    'version': '0.0.3',
+    'description': 'Demo RPM builder for python packages',
     'long_description': None,
     'author': 'mbrav',
     'author_email': 'mbrav@protonmail.com',
