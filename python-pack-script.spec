@@ -1,32 +1,24 @@
-Name:           python-pack-script
-Version:        0.0.1
+%{!?_version: %define _version 0.0.1 }
+%global srcname python-pack-script
+
+
+Name:           %{srcname}
+Version:        %{_version} 
 Release:        1%{?dist}
 Summary:        Test RPM package builder for python package
 BuildArch:      noarch
 
 License:        GPL
-URL:            https://github.com/mbrav/rpm-python-pack
 Source0:        %{name}-%{version}.tar.gz
 
-Requires:       python3
+BuildArch:       noarch
+BuildRequires:   python3-devel python3-setuptools
+Requires:        python3
 
 %description
 Test RPM package builder for python package
 
-%prep
-%setup -q
-
-%install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-cp %{name}.sh $RPM_BUILD_ROOT/%{_bindir}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-%files
-%{_bindir}/%{name}.sh
 
 %changelog
-* Sun Nov  18 2020 Valentin Bajrami <valentin.bajrami@slimmer.ai> - 0.0.1
+* 0.0.1
 - First version being packaged
