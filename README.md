@@ -12,67 +12,113 @@ cd rpm-python-pack/
 
 ## Build Python RPM package with setup.py
 
-1. Install rpm package tools
+1. **Install rpm package tools**
 
     ```bash
     sudo dnf install -y rpmdevtools rpmlint
     ```
 
-<!--2. Setup rpmbuild folder
+2. **Build with Python's standard rpm build tool:**
 
     ```bash
-    rpmdev-setuptree
+    python3 setup.py bdist_rpm
     ```
 
-    It will create the following folder in your home directory:
-
-    ```
-    rpmbuild/
-    ├── BUILD
-    ├── RPMS
-    ├── SOURCES
-    ├── SPECS
-    └── SRPMS
-    ``` -->
-
-2. **Optional**: Convert pyproject.toml to setup.py:
+    <details><summary>ℹ️ Convert pyproject.toml to setup.py</summary>
+    <p>
 
     ```bash
     pip3 install poetry2setup --user && \
     poetry2setup > setup.py
     ```
 
-3. Build with Python's standard rpm build tool:
+    </p>
+    </details>
+
+    <details><summary>ℹ️ Build RPM package on a non-RHEL distro</summary>
+    <p>
 
     ```bash
-    python3 setup.py bdist_rpm
+    pip3 install poetry2setup --user && \
+    poetry2setup > setup.py
     ```
 
-<!-- 3. Build spec:
+    </p>
+    </details>
+
+3. **Install package:**
 
     ```bash
-    rpmbuild -ba ./build/bdist.linux-x86_64/rpm/SPECS/python_pack_script.spec
-    ``` -->
-
-3. Install package:
-
-    ```bash
-    sudo dnf localinstall dist/python_pack_script-*-1.noarch.rpm
+    sudo dnf localinstall dist/python-pack-script-*-1.noarch.rpm
     ```
 
-4. ✅ Check package info:
+4. **Check package info:**
 
     ```bash
-    dnf info python_pack_script
+    dnf info python-pack-script
     ```
+
+    <details><summary>✅ You should see info about package like so:</summary>
+    <p>
+
+    ```
+    Installed Packages
+      Name         : python-pack-script
+      Version      : 0.0.2
+      Release      : 1
+      Architecture : noarch
+      Size         : 1.5 k
+      Source       : python-pack-script-0.0.2-1.src.rpm
+      Repository   : @System
+      Summary      : Test RPM package builder for python package
+      URL          : http://github/mbrav/python-pack-script/
+      License      : GNU
+      Description  : UNKNOWN
+
+    ```
+
+    </p>
+    </details>
+
+</p>
+</details>
+
+<details><summary>✏️ Notes</summary>
+<p>
+
+Setup rpmbuild folder
+
+```bash
+rpmdev-setuptree
+```
+
+It will create the following folder in your home directory:
+
+```
+rpmbuild/
+├── BUILD
+├── RPMS
+├── SOURCES
+├── SPECS
+└── SRPMS
+```
+
+Build spec:
+
+```bash
+rpmbuild -ba ./build/bdist.linux-x86_64/rpm/SPECS/python-pack-script.spec
+```
+
+</p>
+</details>
 
 ## Build Python package with Poetry (WIP)
 
 This uses the new [PEP 518](https://peps.python.org/pep-0518/) pyproject.yml standard, but a standard process for building rpm packages seems to yet be established
 
-1. Install [poetry](https://python-poetry.org/docs/)
+1. **Install [poetry](https://python-poetry.org/docs/)**
 
-2. Build Python package
+2. **Build Python package**
 
     ```bash
     poetry build
@@ -92,19 +138,16 @@ This uses the new [PEP 518](https://peps.python.org/pep-0518/) pyproject.yml sta
 
     ```bash
     pip3 install --no-cache-dir --force-reinstall \
-    dist/python_pack_script-*-py3-none-any.whl
+    dist/python-pack-script-*-py3-none-any.whl
     ```
 
-    Run script
+3. **Run script**
 
     ```bash
-    python3 -m python_pack_script
+    python3 -m python-pack-script
     ```
 
     ✅ You should see a print in your terminal
-
-    </p>
-    </details>
 
 ## Prerequisites for rpm build
 
