@@ -130,3 +130,6 @@ dmypy.json
 
 # Tars
 **.tar.gz
+
+# Release file
+release.txt

@@ -35,7 +35,14 @@ cd rpm-python-pack/
     └── SRPMS
     ``` -->
 
-2. Build with Python's standard rpm build tool:
+2. **Optional**: Convert pyproject.toml to setup.py:
+
+    ```bash
+    pip3 install poetry2setup --user && \
+    poetry2setup > setup.py
+    ```
+
+3. Build with Python's standard rpm build tool:
 
     ```bash
     python3 setup.py bdist_rpm
@@ -84,7 +91,8 @@ This uses the new [PEP 518](https://peps.python.org/pep-0518/) pyproject.yml sta
     Install script into environment
 
     ```bash
-    pip3 install --no-cache-dir --force-reinstall dist/python_pack_script-*-py3-none-any.whl
+    pip3 install --no-cache-dir --force-reinstall \
+    dist/python_pack_script-*-py3-none-any.whl
     ```
 
     Run script
