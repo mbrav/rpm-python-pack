@@ -7,9 +7,12 @@ packages = \
 package_data = \
 {'': ['*']}
 
+entry_points = \
+{'console_scripts': ['python-pack-script = python_pack_script.main:script']}
+
 setup_kwargs = {
     'name': 'python-pack-script',
-    'version': '0.0.3',
+    'version': '0.0.4',
     'description': 'Demo RPM builder for python packages',
     'long_description': None,
     'author': 'mbrav',
@@ -19,6 +22,7 @@ setup_kwargs = {
     'url': None,
     'packages': packages,
     'package_data': package_data,
+    'entry_points': entry_points,
     'python_requires': '>3.7',
 }
 

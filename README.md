@@ -21,7 +21,7 @@ cd rpm-python-pack/
 2. **Build with Python's standard rpm build tool:**
 
     ```bash
-    python3 setup.py bdist_rpm
+    python setup.py bdist --formats=rpm
     ```
 
     <details><summary>ℹ️ Convert pyproject.toml to setup.py</summary>
@@ -49,32 +49,36 @@ cd rpm-python-pack/
 3. **Install package:**
 
     ```bash
-    sudo dnf localinstall dist/python-pack-script-*-1.noarch.rpm
+    sudo dnf localinstall dist/python-pack-script-*.noarch.rpm
     ```
 
 4. **Check package info:**
 
     ```bash
-    dnf info python-pack-script
+    rpm -qi python-pack-script
     ```
 
     <details><summary>✅ You should see info about package like so:</summary>
     <p>
 
     ```
-    Installed Packages
-      Name         : python-pack-script
-      Version      : 0.0.3
-      Release      : 1
-      Architecture : noarch
-      Size         : 1.5 k
-      Source       : python-pack-script-0.0.3-1.src.rpm
-      Repository   : @System
-      Summary      : Demo RPM builder for python packages
-      URL          : http://github/mbrav/python-pack-script/
-      License      : GNU
-      Description  : UNKNOWN
-
+    Name        : python-pack-script
+    Version     : 0.0.4
+    Release     : 1
+    Architecture: noarch
+    Install Date: Wed 27 Apr 2022 09:15:34 AM UTC
+    Group       : Development/Libraries
+    Size        : 1155
+    License     : UNKNOWN
+    Signature   : (none)
+    Source RPM  : python-pack-script-0.0.4-1.src.rpm
+    Build Date  : Wed 27 Apr 2022 09:11:18 AM UTC
+    Build Host  : rocky.local
+    Relocations : /usr
+    Vendor      : mbrav <mbrav@protonmail.com>
+    Summary     : Demo RPM builder for python packages
+    Description :
+    UNKNOWN
     ```
 
     </p>
@@ -138,13 +142,13 @@ This uses the new [PEP 518](https://peps.python.org/pep-0518/) pyproject.yml sta
 
     ```bash
     pip3 install --no-cache-dir --force-reinstall \
-    dist/python-pack-script-*-py3-none-any.whl
+    dist/python_pack_script-*-py3-none-any.whl
     ```
 
 3. **Run script**
 
     ```bash
-    python3 -m python-pack-script
+    python -m python_pack_script --help
     ```
 
     ✅ You should see a print in your terminal
