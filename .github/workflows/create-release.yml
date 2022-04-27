@@ -22,14 +22,17 @@ jobs:
             - name: Install RPM package manager
               run: sudo apt install rpm
 
-            - name: Build Package
-              run: python3 setup.py bdist_rpm
+            - name: Upgrade pip and wheel
+              run: pip3 install wheel setuptools pip --upgrade
+
+            - name: Build tar, Wheel and RPM package
+              run: |
+                  python3 setup.py bdist
+                  python3 setup.py bdist_wheel
+                  python3 setup.py bdist_rpm
 
             - name: Generate commit SHA
               run: echo ${{ github.sha }} > commit-sha.txt
-
-            - name: Test Commit SHA
-              run: cat commit-sha.txt
 
             - name: Release
               uses: softprops/action-gh-release@v1
@@ -39,7 +42,9 @@ jobs:
                   body: ${{ github.event.head_commit.message }}
                   files: |
                       commit-sha.txt
-                      dist/*
+                      dist/*.rpm
+                      dist/*.whl
+                      dist/*-x86_64.tar.gz
                   # build/*/rpm/SRPMS/*.rpm
                   # build/*/rpm/SOURCES/*.tar.gz
                   # build/*/rpm/RPMS/*/*.rpm

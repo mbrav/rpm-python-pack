@@ -21,7 +21,11 @@ cd rpm-python-pack/
 2. **Build with Python's standard rpm build tool**
 
     ```bash
-    python setup.py bdist --formats=rpm
+    python3 setup.py bdist --formats=rpm
+    ```
+
+    ```bash
+    python3 setup.py bdist_wheel --universal
     ```
 
     <details><summary>ℹ️ Convert pyproject.toml to setup.py</summary>
@@ -63,7 +67,7 @@ cd rpm-python-pack/
 
     ```
     Name        : python-pack-script
-    Version     : 0.0.5
+    Version     : 0.0.6
     Release     : 1
     Architecture: noarch
     Install Date: Wed 27 Apr 2022 09:15:34 AM UTC
@@ -71,7 +75,7 @@ cd rpm-python-pack/
     Size        : 1155
     License     : UNKNOWN
     Signature   : (none)
-    Source RPM  : python-pack-script-0.0.5-1.src.rpm
+    Source RPM  : python-pack-script-0.0.6-1.src.rpm
     Build Date  : Wed 27 Apr 2022 09:11:18 AM UTC
     Build Host  : rocky.local
     Relocations : /usr
@@ -93,7 +97,7 @@ cd rpm-python-pack/
     <details><summary>✅ You should see output:</summary>
     <p>
 
-    This is python-pack-script v0.0.5!
+    This is python-pack-script v0.0.6!
 
     </p>
     </details>
