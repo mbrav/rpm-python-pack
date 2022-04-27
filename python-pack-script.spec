@@ -1,4 +1,4 @@
-%{!?_version: %define _version 0.0.4 }
+%{!?_version: %define _version 0.0.5 }
 %global srcname python-pack-script
 
 
@@ -20,5 +20,5 @@ Demo RPM builder for python packages
 
 
 %changelog
-* 0.0.4
+* 0.0.5
 - First version being packaged

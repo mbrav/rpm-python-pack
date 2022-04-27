@@ -18,7 +18,7 @@ cd rpm-python-pack/
     sudo dnf install -y rpmdevtools rpmlint
     ```
 
-2. **Build with Python's standard rpm build tool:**
+2. **Build with Python's standard rpm build tool**
 
     ```bash
     python setup.py bdist --formats=rpm
@@ -52,10 +52,10 @@ cd rpm-python-pack/
     sudo dnf localinstall dist/python-pack-script-*.noarch.rpm
     ```
 
-4. **Check package info:**
+4. **Check package info**
 
     ```bash
-    rpm -qi python-pack-script
+    rpm -qi python-pack-script && which python-pack-script
     ```
 
     <details><summary>✅ You should see info about package like so:</summary>
@@ -63,7 +63,7 @@ cd rpm-python-pack/
 
     ```
     Name        : python-pack-script
-    Version     : 0.0.4
+    Version     : 0.0.5
     Release     : 1
     Architecture: noarch
     Install Date: Wed 27 Apr 2022 09:15:34 AM UTC
@@ -71,7 +71,7 @@ cd rpm-python-pack/
     Size        : 1155
     License     : UNKNOWN
     Signature   : (none)
-    Source RPM  : python-pack-script-0.0.4-1.src.rpm
+    Source RPM  : python-pack-script-0.0.5-1.src.rpm
     Build Date  : Wed 27 Apr 2022 09:11:18 AM UTC
     Build Host  : rocky.local
     Relocations : /usr
@@ -80,6 +80,20 @@ cd rpm-python-pack/
     Description :
     UNKNOWN
     ```
+
+    </p>
+    </details>
+
+5. **Run package**
+
+    ```bash
+    python-pack-script --help
+    ```
+
+    <details><summary>✅ You should see output:</summary>
+    <p>
+
+    This is python-pack-script v0.0.5!
 
     </p>
     </details>

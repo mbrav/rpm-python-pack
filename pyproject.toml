@@ -1,8 +1,17 @@
 [tool.poetry]
-name = "python-pack-script"
-version = "0.0.4"
+name = "python_pack_script"
+version = "0.0.5"
 description = "Demo RPM builder for python packages"
-authors = ["mbrav <mbrav@protonmail.com>"]
+authors = ["mbrav <mbrav@protonmail.com>",]
+maintainers = [ "mbrav <mbrav@protonmail.com>",]
+homepage = "https://github.com/mbrav"
+repository = "https://github.com/mbrav/rpm-python-pack"
+documentation = "https://github.com/mbrav/rpm-python-pack/blob/main/README.md"
+classifiers = [ "Topic :: Software Development :: Build Tools",]
+keywords = [ "nlp", "machine-learning", "machine-learning-library", "bot", "bots", "botkit", "rasa conversational-agents", "conversational-ai", "chatbot", "chatbot-framework", "bot-framework",]
+readme = "README.md"
+license = "GNU General Public License"
+
 
 [tool.poetry.dependencies]
 python = ">3.7"
