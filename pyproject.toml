@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python_pack_script"
-version = "0.0.6"
+version = "0.0.7"
 description = "Demo RPM builder for python packages"
 authors = ["mbrav <mbrav@protonmail.com>",]
 maintainers = [ "mbrav <mbrav@protonmail.com>",]
@@ -25,5 +25,5 @@ python-pack-script = "python_pack_script:main"
 python_pack_script = "python_pack_script:main"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0", "setuptools", "wheel"]
 build-backend = "poetry.core.masonry.api"

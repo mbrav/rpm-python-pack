@@ -1,3 +1,6 @@
+[![Create Release](https://github.com/mbrav/rpm-python-pack/actions/workflows/create-release.yml/badge.svg)](https://github.com/mbrav/rpm-python-pack/actions/workflows/create-release.yml)
+[![Create Release](https://github.com/mbrav/rpm-python-pack/actions/workflows/create-release.yml/badge.svg?event=release)](https://github.com/mbrav/rpm-python-pack/actions/workflows/create-release.yml)
+
 # rpm-python-pack
 
 Demo RPM builder for python packages
@@ -7,10 +10,41 @@ Clone repo
 ```bash
 git clone https://github.com/mbrav/rpm-python-pack.git && \
 cd rpm-python-pack/
-
 ```
 
-## Build Python RPM package with setup.py
+## Option 1: Build Package with PyInstaller
+
+[Pyinstaller](https://pyinstaller.org/en/stable/) is by far the best option as it packages all script's dependencies into a binary file that takes up many times less space than a regular python package with all its dependencies.
+
+1. **Install PyInstaller**
+
+    ```bash
+    pip3 install pyinstaller
+    ```
+
+2. **Build package**
+
+    ```bash
+    pyinstaller cli.py --name python-pack-script --onefile
+    ```
+
+3. **Run binary**
+
+    ```bash
+    ./dist/python-pack-script
+    ```
+
+    <details><summary>✅ You should see output:</summary>
+    <p>
+
+    ```
+    This is python-pack-script v0.0.7!
+    ```
+
+    </p>
+    </details>
+
+## Option 2: Build Python RPM package with setup.py
 
 1. **Install rpm package tools**
 
@@ -39,17 +73,6 @@ cd rpm-python-pack/
     </p>
     </details>
 
-    <details><summary>ℹ️ Build RPM package on a non-RHEL distro</summary>
-    <p>
-
-    ```bash
-    sudo apt install rpm && \
-    python setup.py bdist --formats=rpm
-    ```
-
-    </p>
-    </details>
-
 3. **Install package:**
 
     ```bash
@@ -62,12 +85,12 @@ cd rpm-python-pack/
     rpm -qi python-pack-script && which python-pack-script
     ```
 
-    <details><summary>✅ You should see info about package like so:</summary>
+    <details><summary>✅ You should see info about package like so</summary>
     <p>
 
     ```
     Name        : python-pack-script
-    Version     : 0.0.6
+    Version     : 0.0.7
     Release     : 1
     Architecture: noarch
     Install Date: Wed 27 Apr 2022 09:15:34 AM UTC
@@ -75,7 +98,7 @@ cd rpm-python-pack/
     Size        : 1155
     License     : UNKNOWN
     Signature   : (none)
-    Source RPM  : python-pack-script-0.0.6-1.src.rpm
+    Source RPM  : python-pack-script-0.0.7-1.src.rpm
     Build Date  : Wed 27 Apr 2022 09:11:18 AM UTC
     Build Host  : rocky.local
     Relocations : /usr
@@ -94,10 +117,12 @@ cd rpm-python-pack/
     python-pack-script --help
     ```
 
-    <details><summary>✅ You should see output:</summary>
+    <details><summary>✅ You should see output</summary>
     <p>
 
-    This is python-pack-script v0.0.6!
+    ```
+    This is python-pack-script v0.0.7!
+    ```
 
     </p>
     </details>
@@ -134,7 +159,7 @@ rpmbuild -ba ./build/bdist.linux-x86_64/rpm/SPECS/python-pack-script.spec
 </p>
 </details>
 
-## Build Python package with Poetry (WIP)
+## Option 3: Build Python package with Poetry (WIP)
 
 This uses the new [PEP 518](https://peps.python.org/pep-0518/) pyproject.yml standard, but a standard process for building rpm packages seems to yet be established
 
@@ -153,7 +178,6 @@ This uses the new [PEP 518](https://peps.python.org/pep-0518/) pyproject.yml sta
 
     ```bash
     python3 -m venv venv && source venv/bin/activate
-
     ```
 
     Install script into environment
@@ -171,7 +195,8 @@ This uses the new [PEP 518](https://peps.python.org/pep-0518/) pyproject.yml sta
 
     ✅ You should see a print in your terminal
 
-## Prerequisites for rpm build
+## Resources
 
+-   [_Using PyInstaller to Easily Distribute Python Applications_](https://realpython.com/pyinstaller-python/) by Luke Lee
 -   [_How to create a Linux RPM package_](https://www.redhat.com/sysadmin/create-rpm-package) by Valentin Bajrami (Red Hat)
 -   [_Packaging a Python Wheel as RPM_](https://grimoire.carcano.ch/blog/packaging-a-python-wheel-as-rpm/) by Marco Antonio Carcano

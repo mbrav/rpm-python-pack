@@ -5,12 +5,18 @@ on:
         tags:
             - "v*.*.*"
 
+env:
+    PACKAGE_NAME: python-pack-script
+
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v3
+
+            - name: Install RPM package manager
+              run: sudo apt install rpm
 
             - name: Set up python
               id: setup-python
@@ -19,17 +25,46 @@ jobs:
                   python-version: "3.8"
                   architecture: "x64" # optional x64 or x86. Defaults to x64 if not specified
 
-            - name: Install RPM package manager
-              run: sudo apt install rpm
+            - name: Install Poetry
+              uses: snok/install-poetry@v1
+              with:
+                  virtualenvs-create: true
+                  virtualenvs-in-project: true
+                  installer-parallel: true
+
+            - name: Load cached venv
+              id: cached-poetry-dependencies
+              uses: actions/cache@v3
+              with:
+                  path: .venv
+                  key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+            - name: Install dependencies
+              if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+              run: |
+                  source .venv/bin/activate
+                  poetry install --no-interaction --no-root
 
             - name: Upgrade pip and wheel
-              run: pip3 install wheel setuptools pip --upgrade
+              run: |
+                  source .venv/bin/activate
+                  pip3 install wheel setuptools pip pyinstaller --upgrade
 
             - name: Build tar, Wheel and RPM package
               run: |
+                  source .venv/bin/activate
                   python3 setup.py bdist
                   python3 setup.py bdist_wheel
                   python3 setup.py bdist_rpm
+
+            - name: Build Pyinstaller package
+              run: |
+                  source .venv/bin/activate
+                  pyinstaller cli.py --name $PACKAGE_NAME --onefile
+
+            - name: Test Pyinstaller package
+              run: |
+                  ./dist/$PACKAGE_NAME
 
             - name: Generate commit SHA
               run: echo ${{ github.sha }} > commit-sha.txt
@@ -45,6 +80,7 @@ jobs:
                       dist/*.rpm
                       dist/*.whl
                       dist/*-x86_64.tar.gz
+                      dist/+([^.])
                   # build/*/rpm/SRPMS/*.rpm
                   # build/*/rpm/SOURCES/*.tar.gz
                   # build/*/rpm/RPMS/*/*.rpm
